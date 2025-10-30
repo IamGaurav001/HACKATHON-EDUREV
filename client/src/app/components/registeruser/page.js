@@ -42,7 +42,7 @@ export default function RegisterUserPage() {
 
       await new Promise((r) => setTimeout(r, 800));
       setMessage("Account created successfully. You can now sign in.");
-      setForm({ name: "", regno: "", password: "" });
+      setForm({ name: "", regno: "", password: "", secQuestion: "", secAnswer: "" });
     } catch (err) {
       setMessage(err.message || "Registration failed. Try again.");
     } finally {
