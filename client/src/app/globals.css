@@ -27,69 +27,215 @@ body {
 
 /* Animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulseSlow {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 }
 
 @keyframes pulseSlower {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.9; transform: scale(1.08); }
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
 }
 
 @keyframes gridPop {
-  0% { opacity: 0; transform: scale(0.96); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes cardFloat {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-6px) scale(1.01); }
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-6px) scale(1.01);
+  }
 }
 
-.animate-float { animation: float 8s ease-in-out infinite; }
-.animate-pulse-slow { animation: pulseSlow 6s ease-in-out infinite; }
-.animate-pulse-slower { animation: pulseSlower 10s ease-in-out infinite; }
-.animate-grid-pop { animation: gridPop 500ms ease-out both; }
-.animate-card-float { animation: cardFloat 4s ease-in-out infinite; }
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 6s ease-in-out infinite;
+}
+
+.animate-pulse-slower {
+  animation: pulseSlower 10s ease-in-out infinite;
+}
+
+.animate-grid-pop {
+  animation: gridPop 500ms ease-out both;
+}
+
+.animate-card-float {
+  animation: cardFloat 4s ease-in-out infinite;
+}
 
 /* New SVG animation keyframes */
 @keyframes blink {
-  0%, 47%, 53%, 100% { transform: scaleY(1); }
-  50% { transform: scaleY(0.1); }
-}
-@keyframes capBob {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-4px) rotate(-1.5deg); }
-}
-@keyframes bookFloat {
-  0%, 100% { transform: translateY(0) rotate(-6deg); }
-  50% { transform: translateY(-8px) rotate(-2deg); }
-}
-@keyframes ideaPop {
-  0% { transform: scale(0.8); opacity: 0; }
-  60% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); }
-}
-@keyframes wave {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(8deg); }
-}
-@keyframes sparkle {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.25); }
+
+  0%,
+  47%,
+  53%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(0.1);
+  }
 }
 
-.animate-blink { transform-origin: center; animation: blink 4s ease-in-out infinite; }
-.animate-cap-bob { animation: capBob 3.5s ease-in-out infinite; }
-.animate-book-float { transform-origin: 68px 180px; animation: bookFloat 4.5s ease-in-out infinite; }
-.animate-idea-pop { transform-origin: 210px 140px; animation: ideaPop 1.2s ease-out 0.3s both; }
-.animate-wave { animation: wave 2.2s ease-in-out infinite; }
-.animate-sparkle { animation: sparkle 2.4s ease-in-out infinite; }
+@keyframes capBob {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-4px) rotate(-1.5deg);
+  }
+}
+
+@keyframes bookFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-6deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+}
+
+@keyframes ideaPop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes wave {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes sparkle {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+.animate-blink {
+  transform-origin: center;
+  animation: blink 4s ease-in-out infinite;
+}
+
+.animate-cap-bob {
+  animation: capBob 3.5s ease-in-out infinite;
+}
+
+.animate-book-float {
+  transform-origin: 68px 180px;
+  animation: bookFloat 4.5s ease-in-out infinite;
+}
+
+.animate-idea-pop {
+  transform-origin: 210px 140px;
+  animation: ideaPop 1.2s ease-out 0.3s both;
+}
+
+.animate-wave {
+  animation: wave 2.2s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2.4s ease-in-out infinite;
+}
 
 /* Smooth scroll for anchor links */
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(7.5px);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #4f46e5, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
