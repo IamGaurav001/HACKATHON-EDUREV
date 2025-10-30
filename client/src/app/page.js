@@ -58,6 +58,7 @@ export default function Home() {
           >
             Documentation
           </a>
+          <h1 className="text-2xl font-bold">Gaurav Dubey</h1>
         </div>
       </main>
     </div>
