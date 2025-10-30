@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 
 export default function RegisterUserPage() {
-  const [form, setForm] = useState({ name: "", regno: "", password: "" });
+  const [form, setForm] = useState({ name: "", regno: "", password: "", secQuestion: "", secAnswer: "" });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState("");
@@ -22,6 +22,8 @@ export default function RegisterUserPage() {
     else if (!/^[A-Za-z0-9-_.]{3,30}$/.test(form.regno)) errs.regno = "Use 3-30 letters/numbers (- _ . allowed)";
     if (!form.password) errs.password = "Password is required";
     else if (form.password.length < 6) errs.password = "Minimum 6 characters";
+    if (!form.secQuestion) errs.secQuestion = "Select a security question";
+    if (!form.secAnswer?.trim()) errs.secAnswer = "Answer is required";
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -118,6 +120,41 @@ export default function RegisterUserPage() {
                 </button>
               </div>
               {errors.password && <p className="mt-1 text-xs text-black">{errors.password}</p>}
+            </div>
+
+            {/* Security Question */}
+            <div>
+              <label htmlFor="secQuestion" className="block text-sm font-medium mb-1">Security Question</label>
+              <select
+                id="secQuestion"
+                name="secQuestion"
+                value={form.secQuestion}
+                onChange={onChange}
+                className={`w-full rounded-lg border bg-white px-3 py-2 outline-none transition
+                           border-zinc-200/70 focus:border-[#4F39F9] focus:ring-2 focus:ring-[rgba(79,57,249,0.25)]`}
+              >
+                <option value="">Select a question</option>
+                <option value="first_pet">What was your first pet's name?</option>
+                <option value="fav_book">What is your favorite book?</option>
+                <option value="fav_teacher">Who is your favorite teacher?</option>
+              </select>
+              {errors.secQuestion && <p className="mt-1 text-xs text-rose-600">{errors.secQuestion}</p>}
+            </div>
+
+            {/* Security Answer */}
+            <div>
+              <label htmlFor="secAnswer" className="block text-sm font-medium mb-1">Your Answer</label>
+              <input
+                id="secAnswer"
+                name="secAnswer"
+                type="text"
+                value={form.secAnswer}
+                onChange={onChange}
+                placeholder="Type your answer"
+                className={`w-full rounded-lg border bg-white px-3 py-2 outline-none transition
+                           border-zinc-200/70 focus:border-[#4F39F9] focus:ring-2 focus:ring-[rgba(79,57,249,0.25)]`}
+              />
+              {errors.secAnswer && <p className="mt-1 text-xs text-rose-600">{errors.secAnswer}</p>}
             </div>
 
             <button
