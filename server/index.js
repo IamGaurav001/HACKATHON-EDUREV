@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./db/dbConnection.js"
 import cookieParser from "cookie-parser";
+import userregister_Router from "./routers/userregister_route..js";
+import userlogin_Router from "./routers/userlogin_route.js";
+import forgotpassword_Router from "./routers/forgotpass_route.js";
 
 dotenv.config();
 
@@ -18,6 +21,11 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
+
+
+app.use( userregister_Router);
+app.use( userlogin_Router);
+app.use( forgotpassword_Router);
 
 app.get("/", async (req, res) => {
   try {
