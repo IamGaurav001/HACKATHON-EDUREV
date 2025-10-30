@@ -35,21 +35,42 @@ export default function LoginPage() {
     return Object.keys(errs).length === 0;
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    setMessage("");
-    if (!validateLogin()) return;
+ const onSubmit = async (e) => {
+  e.preventDefault();
+  setMessage("");
+  if (!validate()) return;
 
-    try {
-      setSubmitting(true);
-      await new Promise((r) => setTimeout(r, 700));
-      setMessage("Signed in successfully.");
-    } catch (err) {
-      setMessage("Login failed. Try again.");
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  try {
+    setSubmitting(true);
+
+    // Send POST request to your backend
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userregister`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: form.name,
+        reg_no: form.regno,
+        password: form.password,
+        secQuestion: form.secQuestion,
+        secAnswer: form.secAnswer.trim().toLowerCase()
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.message || "Registration failed");
+
+    // Success
+    setMessage(data.message);
+    setForm({ name: "", regno: "", password: "", secQuestion: "", secAnswer: "" });
+
+  } catch (err) {
+    setMessage(err.message || "Registration failed. Try again.");
+  } finally {
+    setSubmitting(false);
+  }
+};
+
 
   const handleForgotSubmit = (e) => {
     e.preventDefault();
