@@ -37,7 +37,10 @@ export default function LoginPage() {
         try {
             setSubmitting(true);
 
-            const res = await fetch(SERVER_URL + "/api/userlogin", {
+            // Assuming SERVER_URL is defined elsewhere, if not, use "http://localhost:5000"
+            const apiEndpoint = SERVER_URL ? SERVER_URL + "/api/userlogin" : "http://localhost:5000/api/userlogin";
+
+            const res = await fetch(apiEndpoint, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ reg_no: form.regno.toUpperCase(), password: form.password }),
@@ -82,7 +85,7 @@ export default function LoginPage() {
                                 value={form.regno}
                                 onChange={onChange}
                                 className={`w-full rounded-lg border bg-white px-3 py-2.5 outline-none transition
-                                        border-zinc-300 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 uppercase placeholder:text-zinc-400`}
+                                         border-zinc-300 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 uppercase placeholder:text-zinc-400`}
                                 autoComplete="username"
                                 placeholder="e.g., AB12345"
                             />
