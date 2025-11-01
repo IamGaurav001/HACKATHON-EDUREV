@@ -13,18 +13,32 @@ const app = express();
 
 connectDB();
 
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  'http://localhost:3000',
+  'https://hackathon-edurev.vercel.app'
+];
 
 app.use(cors({
-    origin: ["http://localhost:3000", "https://hackathon-edurev.vercel.app"],
-    credentials: true
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ['POST', 'GET', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 
 
-app.use( userregister_Router);
-app.use( userlogin_Router);
-app.use( forgotpassword_Router);
+app.use(userregister_Router);
+app.use(userlogin_Router);
+app.use(forgotpassword_Router);
 
 app.get("/", async (req, res) => {
   try {

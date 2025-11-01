@@ -36,7 +36,7 @@ forgotpass_Router.post("/api/forgot-password", async (req, res) => {
     // ✅ Return the security question using the model key (secQuestion)
     res.status(200).json({
       message: "User found",
-      securityQuestion: user.secQuestion, // Changed from user.securityQuestion
+      securityQuestion: user.secQuestion,
     });
   } catch (error) {
     console.error("Forgot password error:", error);

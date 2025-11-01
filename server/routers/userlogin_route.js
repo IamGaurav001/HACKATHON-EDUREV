@@ -4,7 +4,7 @@ import { User } from "../models/user_model.js"; // adjust path as needed
 
 const userlogin_Router = express.Router();
 
- userlogin_Router.post("/api/userlogin", async (req, res) => {
+userlogin_Router.post("/api/userlogin", async (req, res) => {
   try {
     const { reg_no, password } = req.body;
 
@@ -35,4 +35,4 @@ const userlogin_Router = express.Router();
   }
 });
 
-export default  userlogin_Router;
+export default userlogin_Router;
