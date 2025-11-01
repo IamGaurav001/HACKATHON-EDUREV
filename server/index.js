@@ -11,12 +11,11 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Connect to MongoDB
 connectDB();
 
 
 app.use(cors({
-    origin: /http:\/\/localhost(:\d+)?/,
+    origin: ["http://localhost:3000", "https://hackathon-edurev.vercel.app"],
     credentials: true
 }));
 app.use(express.json());
