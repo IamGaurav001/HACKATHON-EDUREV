@@ -1,114 +1,100 @@
 "use client";
 
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { BookOpen, TrendingUp, Globe2, Sparkles, Clock3 } from "lucide-react";
 
 const benefits = [
     {
-        icon: "📚",
-        title: "Core Curriculum",
-        description: "Access a comprehensive, accredited curriculum that meets academic and industry standards.",
+        icon: BookOpen,
+        title: "Recognition of Prior Learning",
+        description: "Leverage your certifications, internships, and professional experience to earn academic credit and accelerate your degree completion.",
+        lightColor: "bg-gray-100",
+        iconColor: "text-gray-900",
     },
     {
-        icon: "💡",
-        title: "Skill Enhancement",
-        description: "Explore non-core, project-based courses to build a versatile professional portfolio.",
+        icon: TrendingUp,
+        title: "Grade Enhancement",
+        description: "Boost your academic performance through high-impact achievements including hackathons, competitive exams, and research publications.",
+        lightColor: "bg-gray-100",
+        iconColor: "text-gray-900",
     },
     {
-        icon: "🛡️",
+        icon: Globe2,
+        title: "Global Course Credits",
+        description: "Substitute traditional coursework with industry-recognized MOOCs and certifications from leading global platforms like NPTEL.",
+        lightColor: "bg-gray-100",
+        iconColor: "text-gray-900",
+    },
+    {
+        icon: Sparkles,
+        title: "Real-World Projects",
+        description: "Replace classroom assignments with practical, production-ready projects that build a compelling professional portfolio.",
+        lightColor: "bg-gray-100",
+        iconColor: "text-gray-900",
+    },
+    {
+        icon: Clock3,
         title: "Flexible Scheduling",
-        description: "Benefit from flexible learning paths and structured duty leave provisions.",
-    },
-    {
-        icon: "📈",
-        title: "Credit Acceleration",
-        description: "Earn extra academic credits rapidly through optional, high-impact participation.",
-    },
-    {
-        icon: "🤝",
-        title: "Community Growth",
-        description: "Participate in our student referral program and grow your professional network with rewards.",
+        description: "Balance academics, internships, and placement opportunities with intelligently structured learning paths designed for modern students.",
+        lightColor: "bg-gray-100",
+        iconColor: "text-gray-900",
     },
 ];
 
 export default function BenefitsSection() {
     return (
-        <section id="benefits" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50 to-purple-50 border-t border-gray-200">
+        <section id="benefits" className="py-16  md:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 z-40">
             <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-14 md:mb-16">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-300 mb-4 shadow-sm">
+                        <span className="inline-block w-2 h-2 bg-gray-900 rounded-full"></span>
+                        <p className="text-sm font-semibold text-gray-700">KEY FEATURES</p>
+                    </div>
 
-                <div className="text-center mb-16">
-                    <p className="inline-flex items-center text-sm font-bold uppercase tracking-widest text-indigo-700 bg-indigo-100 px-3 py-1 rounded-full mb-3 shadow-md">
-                        <CheckCircle size={16} className="mr-2 fill-indigo-500 text-white" />
-                        Our Value Proposition
-                    </p>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
-                        Maximize Your <span className="text-indigo-600">Potential</span>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                        Unlock Your <span className="text-gray-700">Academic Potential</span>
                     </h2>
-                    <p className="text-xl text-gray-500 max-w-3xl mx-auto mt-4">
-                        Discover the powerful features engineered to accelerate your growth and ensure academic success.
+
+                    <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        Empower your educational journey with innovative pathways that recognize your diverse skill set and accelerate your success.
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
-                    {benefits.map((benefit, index) => (
-                        <div
-                            key={index}
-                            className="
-                                bg-white p-10 rounded-3xl 
-                                shadow-xl hover:shadow-2xl 
-                                border border-gray-100 hover:border-indigo-300 
-                                transition-all duration-300 
-                                transform hover:-translate-y-2 hover:scale-[1.02] 
-                                group cursor-pointer
-                                relative overflow-hidden
-                            "
-                        >
-                            <div className="absolute top-0 right-0 w-32 h-24 bg-indigo-50 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-6">
+                    {benefits.map((benefit, index) => {
+                        const IconComponent = benefit.icon;
+                        return (
+                            <div
+                                key={index}
+                                className="group relative h-full overflow-hidden rounded-2xl bg-white border border-gray-200 hover:border-gray-900 transition-all duration-300 hover:shadow-xl"
+                            >
+                                <div className="absolute inset-0 bg-gray-900 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
 
-                            <div className="
-                                w-18 h-18 text-4xl 
-                                bg-indigo-50 rounded-2xl 
-                                flex items-center justify-center 
-                                mb-5 
-                                border-2 border-indigo-200 
-                                group-hover:bg-indigo-100 group-hover:border-indigo-300 
-                                transition-all duration-300
-                                relative z-10
-                            ">
-                                {benefit.icon}
+                                <div className="relative p-6 md:p-7 h-full flex flex-col">
+                                    <div className={`w-14 h-14 rounded-xl ${benefit.lightColor} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-gray-200`}>
+                                        <IconComponent className={`w-8 h-8 ${benefit.iconColor}`} strokeWidth={2} />
+                                    </div>
+
+                                    <h3 className="text-lg font-extrabold text-gray-900 mb-2 leading-snug group-hover:text-gray-800 transition-colors">
+                                        {benefit.title}
+                                    </h3>
+
+                                    <p className="text-gray-600 text-sm leading-relaxed grow mb-4 font-medium">
+                                        {benefit.description}
+                                    </p>
+                                </div>
+
+                                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                             </div>
-
-                            <h3 className="
-                                text-xl font-extrabold text-gray-900 
-                                mb-2 
-                                group-hover:text-indigo-700 
-                                transition-colors
-                                relative z-10
-                            ">
-                                {benefit.title}
-                            </h3>
-
-                            <p className="
-                                text-gray-600 text-base leading-relaxed 
-                                mb-6 
-                                relative z-10
-                            ">
-                                {benefit.description}
-                            </p>
-
-                            <button className="
-                                flex items-center text-indigo-600 font-bold text-sm 
-                                hover:text-indigo-800 
-                                transition-all duration-300 
-                                group-hover:translate-x-1
-                                relative z-10
-                            ">
-                                Explore Details
-                                <ArrowRight size={16} className="ml-2" />
-                            </button>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
 
+                <div className="mt-12 md:mt-14 text-center">
+                    <p className="text-gray-600 mb-4 font-medium">Ready to transform your educational journey?</p>
+                    <button className="px-8 py-3 bg-gray-900 text-white font-semibold rounded-full hover:bg-gray-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5">
+                        Explore All Benefits
+                    </button>
+                </div>
             </div>
         </section>
     );
