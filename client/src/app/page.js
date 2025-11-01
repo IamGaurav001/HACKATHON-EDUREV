@@ -1,73 +1,61 @@
-"use client";
 import Navbar from './components/Navbar';
 import BenefitsSection from './components/BenefitsSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import HowItWorksSection from './components/HowItWorksSection';
+import { FaArrowDown } from "react-icons/fa6";
 import Footer from './components/Footer';
-import Image from 'next/image';
-import imageCollage from './image/image.png';
-
-const UserAvatars = () => (
-  <div className="flex items-center">
-    <div className="flex -space-x-3">
-      <div className="w-10 h-10 rounded-full bg-pink-300 border-2 border-white"></div>
-      <div className="w-10 h-10 rounded-full bg-blue-300 border-2 border-white"></div>
-      <div className="w-10 h-10 rounded-full bg-yellow-300 border-2 border-white"></div>
-    </div>
-    <div className="w-10 h-10 rounded-full bg-gray-800 border-2 border-white flex items-center justify-center text-white font-semibold ml-2">N</div>
-  </div>
-);
-
-const StatCard = ({ value, label, children, wide = false }) => (
-  <div className={`bg-gray-50 p-6 rounded-2xl ${wide ? 'md:col-span-2' : ''}`}>
-    <div className="flex justify-between items-center">
-      <div>
-        {children}
-        <p className="text-3xl font-bold text-gray-900 mt-4">{value}</p>
-        <p className="text-sm text-gray-600">{label}</p>
-      </div>
-      <a href="#" className="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm hover:bg-gray-100 transition-transform hover:scale-110">
-        <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg>
-      </a>
-    </div>
-  </div>
-);
+import Spline from '@splinetool/react-spline/next';
+import Link from 'next/link';
 
 function HomePage() {
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white">
       <Navbar />
-      <div className="flex flex-col overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-        <main className="flex h-screen w-full pt-20 md:pt-24">
-          <section className="flex-1 p-8 lg:px-16 flex flex-col justify-center overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            <div className="max-w-2xl">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">
-                Revolutionize Your <span className="text-blue-600">Learning</span> Experience
+
+      <div className="flex flex-col">
+        <main className="w-full md:max-h-[calc(100vh-30px)] flex flex-col lg:flex-row px-30">
+
+          <section className="flex-1 px-6 md:px-10 lg:px-12 flex flex-col justify-center items-start py-40 lg:py-100">
+            <div className="max-w-2xl w-full space-y-6">
+              <div className="inline-block px-3 py-1.5 bg-gray-100 rounded-full border border-gray-300 shadow-sm">
+                <p className="text-xs md:text-sm font-semibold text-gray-800">🎓 LPU's Flagship Initiative</p>
+              </div>
+
+              <h1 className="text-3xl md:text-3xl lg:text-5xl xl:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight">
+                Get Academic Credit for <span className="text-gray-700">What You Already Know</span>
               </h1>
-              <p className="text-lg text-gray-600 mb-10">
-                EduRev provides an immersive and interactive learning platform, combining cutting-edge 3D models with AI-powered assistance to make education engaging and effective.
+
+              <p className="text-sm md:text-xl text-gray-700 leading-relaxed font-medium">
+                EduRev empowers you to bypass known courses with certifications, boost grades through hackathons, and replace classes with NPTEL and MOOCs. Take control of your degree, master skills faster, and accelerate your career.
               </p>
-              <a href="#" className="inline-block px-10 py-4 text-lg font-semibold text-gray-800 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition duration-300 shadow-sm hover:shadow-md transform hover:scale-105 mb-12">
-                Get Started
-              </a>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                <StatCard value="5K+" label="Students Enrolled">
-                  <UserAvatars />
-                </StatCard>
-                <StatCard value="85+" label="Courses Available" />
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/login" className="px-6 py-2.5 text-sm md:text-base font-semibold text-white bg-gray-900 rounded-full hover:bg-gray-800 transition duration-300 shadow-lg hover:shadow-xl text-center whitespace-nowrap">
+                  Start Your Revolution
+                </Link>
+                <Link href="#how-it-works" className="px-6 py-2.5 text-sm md:text-base font-semibold text-gray-900 bg-white border-2 border-gray-900 rounded-full hover:bg-gray-50 transition duration-300 shadow-md hover:shadow-lg text-center whitespace-nowrap">
+                  How EduRev Works
+                </Link>
+              </div>
+
+              <div className="flex items-center gap-4 pt-4">
+                <p className="text-sm md:text-base font-semibold text-gray-600">Learn more about EduRev</p>
+                <a href="#benefits" className="w-12 h-12 rounded-full border-2 border-gray-900 flex items-center justify-center hover:bg-gray-900 transition-all duration-300 cursor-pointer group flex-shrink-0">
+                  <FaArrowDown />
+                </a>
               </div>
             </div>
           </section>
-          <section className="hidden lg:flex flex-1 items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-emerald-50 relative">
-            <Image
-              src={imageCollage}
-              alt="Happy EduRev students collage"
-              className="rounded-3xl shadow-2xl border border-indigo-100 object-cover object-center"
-              width={430} height={440}
-              priority
-            />
+
+          <section className="hidden lg:block absolute top-12 right-0 w-1/2 h-full z-0">
+            <div className="w-full h-full relative">
+              <Spline
+                scene="https://prod.spline.design/M6cpWkK3umnhRoUB/scene.splinecode"
+              />
+            </div>
           </section>
         </main>
+
         <BenefitsSection />
         <HowItWorksSection />
         <TestimonialsSection />
