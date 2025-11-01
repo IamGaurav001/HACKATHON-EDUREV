@@ -30,6 +30,9 @@ export default function LoginPage() {
 
         try {
             setSubmitting(true);
+            // const res = await fetch("/api/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
+            // const data = await res.json();
+            // if (!res.ok) throw new Error(data?.message || "Invalid credentials");
             await new Promise((r) => setTimeout(r, 700));
             setMessage("Signed in successfully.");
             // TODO: redirect to dashboard or desired page, e.g., router.push("/dashboard")
@@ -43,47 +46,35 @@ export default function LoginPage() {
     return (
         <main className="min-h-screen bg-white text-zinc-900 flex items-center justify-center p-6">
             <div className="relative w-full max-w-md">
+                {/* Subtle background blur effects */}
                 <div className="pointer-events-none absolute -top-20 -left-24 h-40 w-40 rounded-full bg-zinc-100/50 filter blur-3xl" />
                 <div className="pointer-events-none absolute -bottom-16 -right-20 h-44 w-44 rounded-full bg-zinc-100/50 filter blur-3xl" />
 
-                <div className="relative rounded-2xl border border-zinc-300 bg-white p-6 shadow-xl">
-                    <div className="mb-5 text-center">
-                        <h1 className="text-2xl font-semibold tracking-tight">
-                            Student Sign In
-                        </h1>
-                        <p className="mt-1 text-sm text-zinc-500">
-                            Use your registration number and password.
-                        </p>
+                <div className="relative rounded-2xl border border-zinc-300 bg-white p-8 shadow-2xl">
+                    <div className="mb-6 text-center">
+                        <h1 className="text-2xl font-bold tracking-tight">Student Sign In</h1>
+                        <p className="mt-1 text-sm text-zinc-600">Enter your credentials to access your portal.</p>
                     </div>
 
-                    <form onSubmit={onSubmit} className="space-y-4">
+                    <form onSubmit={onSubmit} className="space-y-5">
                         <div>
-                            <label
-                                htmlFor="regno"
-                                className="block text-sm font-medium mb-1"
-                            >
-                                Registration Number
-                            </label>
+                            <label htmlFor="regno" className="block text-sm font-medium mb-1 text-zinc-700">Registration Number</label>
                             <input
                                 id="regno"
                                 name="regno"
                                 type="text"
                                 value={form.regno}
                                 onChange={onChange}
-                                className="w-full rounded-lg border bg-white px-3 py-2 uppercase border-zinc-200/70 focus:border-[#4F39F9] focus:ring-2 focus:ring-[rgba(79,57,249,0.25)] outline-none"
+                                className={`w-full rounded-lg border bg-white px-3 py-2.5 outline-none transition
+                                    border-zinc-300 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 uppercase placeholder:text-zinc-400`}
+                                autoComplete="username"
+                                placeholder="e.g., AB12345"
                             />
-                            {errors.regno && (
-                                <p className="mt-1 text-xs text-rose-600">{errors.regno}</p>
-                            )}
+                            {errors.regno && <p className="mt-1 text-xs font-semibold text-black">{errors.regno}</p>}
                         </div>
 
                         <div>
-                            <label
-                                htmlFor="password"
-                                className="block text-sm font-medium mb-1"
-                            >
-                                Password
-                            </label>
+                            <label htmlFor="password" className="block text-sm font-medium mb-1 text-zinc-700">Password</label>
                             <div className="relative">
                                 <input
                                     id="password"
@@ -91,44 +82,42 @@ export default function LoginPage() {
                                     type={showPassword ? "text" : "password"}
                                     value={form.password}
                                     onChange={onChange}
-                                    className="w-full rounded-lg border bg-white px-3 py-2 pr-10 border-zinc-200/70 focus:border-[#4F39F9] focus:ring-2 focus:ring-[rgba(79,57,249,0.25)] outline-none"
+                                    className={`w-full rounded-lg border bg-white pr-10 px-3 py-2.5 outline-none transition
+                                        border-zinc-300 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 placeholder:text-zinc-400`}
+                                    autoComplete="current-password"
+                                    placeholder="Enter your password"
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword((s) => !s)}
-                                    className="absolute inset-y-0 right-0 px-3 text-zinc-500 hover:text-[#4F39F9]"
+                                    aria-label={showPassword ? "Hide password" : "Show password"}
+                                    className="absolute inset-y-0 right-0 px-3 flex items-center text-zinc-500 hover:text-zinc-900 transition-colors"
                                 >
-                                    {showPassword ? "🙈" : "👁️"}
+                                    {showPassword ? (
+                                        <EyeOff className="h-5 w-5" />
+                                    ) : (
+                                        <Eye className="h-5 w-5" />
+                                    )}
                                 </button>
                             </div>
-                            {errors.password && (
-                                <p className="mt-1 text-xs text-rose-600">{errors.password}</p>
-                            )}
+                            {errors.password && <p className="mt-1 text-xs font-semibold text-black">{errors.password}</p>}
                         </div>
 
                         <button
                             type="submit"
                             disabled={submitting}
-                            className="w-full mt-2 rounded-lg bg-[#4F39F9] text-white py-2.5 font-medium hover:brightness-95 disabled:opacity-60"
+                            className="w-full mt-4 rounded-lg bg-zinc-900 text-white py-2.5 font-bold tracking-wide hover:bg-zinc-700 disabled:opacity-60 disabled:cursor-not-allowed transition duration-150"
                         >
                             {submitting ? "Signing in..." : "Sign In"}
                         </button>
 
                         {message && (
-                            <p className="mt-2 text-center text-sm text-emerald-700">
-                                {message}
-                            </p>
+                            <div className="mt-3 text-center text-sm font-medium text-zinc-700">{message}</div>
                         )}
                     </form>
 
-                    <div className="mt-5 text-center text-sm text-zinc-600">
-                        New here?{" "}
-                        <Link
-                            href="/components/registeruser"
-                            className="text-sky-600 hover:underline"
-                        >
-                            Create an account
-                        </Link>
+                    <div className="mt-6 text-center text-sm text-zinc-600">
+                        New here? <Link href="/registeruser" className="text-zinc-900 font-medium hover:underline">Create an account</Link>
                     </div>
                 </div>
             </div>
